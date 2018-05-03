@@ -1,2 +1,7 @@
+com\lt\model\UsersModel.class
+com\lt\SummerApplication.class
+com\lt\services\UsersService.class
 com\lt\controllers\HomeController.class
-com\lt\dao\GenericDAO.class
+com\lt\dao\UserDao.class
+com\lt\controllers\Api.class
+com\lt\utils\GenericDAO.class
