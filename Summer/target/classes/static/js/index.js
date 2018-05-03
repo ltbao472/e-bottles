@@ -13,9 +13,11 @@ var index = {
 		$.ajax({
 			type:'POST',
 			url:'/api/md5',
-			data:{data:text},
+			contentType: "application/json",
+			dataType : 'json',
+			data:JSON.stringify({data:text}),
 			success: function(result){
-				$('#result').html(result);
+				$('#result').html(result.data);
 			}
 		});
 	}

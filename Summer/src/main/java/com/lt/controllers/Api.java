@@ -1,5 +1,7 @@
 package com.lt.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lt.model.Md5RequestModel;
+import com.lt.model.Md5ResponseModel;
 import com.lt.services.UsersService;
 
 @RestController
 @RequestMapping("/api")
 public class Api {
+	private static final Logger log = LoggerFactory.getLogger(Api.class);
 	@Autowired
 	private UsersService service;
 	@RequestMapping(value="/greeting", method = RequestMethod.GET)
@@ -27,11 +32,15 @@ public class Api {
 	}
 	
 	@RequestMapping(value =  "/md5", method = RequestMethod.POST)
-	public ResponseEntity<String> md5(@RequestBody String data){
+	public ResponseEntity<?> md5(@RequestBody Md5RequestModel data){
+		log.info("Request data: {}", data);
 		String md5Text = "";
-		if(!"".equalsIgnoreCase(data)){
-			md5Text = DigestUtils.md5DigestAsHex(data.trim().getBytes());
+		if(!"".equalsIgnoreCase(data.getData())){
+			md5Text = DigestUtils.md5DigestAsHex(data.getData().trim().getBytes());
 		}
-		return new ResponseEntity<String>(md5Text, HttpStatus.OK);
+		Md5ResponseModel re = new Md5ResponseModel();
+		re.setData(md5Text);
+		log.info("Response data: {}", re);
+		return ResponseEntity.ok(re);
 	}
 }
