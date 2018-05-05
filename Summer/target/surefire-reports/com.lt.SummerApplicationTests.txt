@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.lt.SummerApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.083 s - in com.lt.SummerApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.361 s - in com.lt.SummerApplicationTests
